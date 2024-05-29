@@ -1,0 +1,30 @@
+node
+{
+
+    def readContent='''2024-06-21 13:22:23 user1 123.4
+2024-06-21 13:22:24 user2 98.5
+2024-06-21 13:22:25 user1 230.3
+2024-06-21 13:22:26 user10 88.8'''
+    def getEachRow=readContent.split("\n")
+    Float max_val
+    Float min_val
+    def storeFloatValues=[]
+    for(record in getEachRow) 
+    {
+        Float getval=record.split(" ")[3].trim()
+        storeFloatValues.add(getval)
+        
+    }
+    
+    println "Bandwidth Values in the logs are : "+storeFloatValues
+    
+    //To Find Maximum value in the list using collections.max() function
+    def maxValue = Collections.max(storeFloatValues) 
+    
+    //To Find Minimum value in the list using collections.min() function
+    def minval = Collections.min(storeFloatValues) 
+    
+    println "Maximum Bandwidth value in the log : "+maxValue
+    println "Minimum Bandwidth value in the log : "+minval
+
+}

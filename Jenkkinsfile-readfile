@@ -1,0 +1,28 @@
+node
+{
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mahendran-indiabees/VirtusaInterview']]])
+    
+    //Read the log file in workspace
+    def readContent=readFile 'logfile.txt'
+    def getEachRow=readContent.split("\n")
+    Float max_val
+    Float min_val
+    def storeFloatValues=[]
+    for(record in getEachRow) 
+    {
+        Float getval=record.split(" ")[3].trim()
+        storeFloatValues.add(getval)
+        
+    }
+    
+    println "Bandwidth Values in the logs are : "+storeFloatValues
+    
+    //To Find Maximum value in the list using collections.max() function
+    def maxValue = Collections.max(storeFloatValues) 
+    
+    //To Find Minimum value in the list using collections.min() function
+    def minval = Collections.min(storeFloatValues) 
+    
+    println "Maximum Bandwidth value in the log : "+maxValue
+    println "Minimum Bandwidth value in the log : "+minval
+}
